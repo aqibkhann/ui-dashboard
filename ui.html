@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<head>
+    <title>
+        UI DASHBOARD
+    </title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="stylesheet" href="styles.css">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Roboto&family=Source+Code+Pro:wght@300;400&display=swap" rel="stylesheet">
+    <script defer>
+        window.onload = function(){
+            const id = document.querySelectorAll('.list');
+            const sidebar = document.querySelector('.sidebar');
+            const menubar = document.querySelector('.menu');
+            var width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
+            if(width>800){
+                sidebar.style['display'] = 'flex';
+                menubar.style['display'] = 'none';
+            } else {
+                sidebar.style['display'] = 'none';
+                menubar.style['display'] = 'inline-block';
+            }
+            window.onresize = function(){
+                width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
+                if(width>800){
+                    sidebar.style['display'] = 'flex';
+                    menubar.style['display'] = 'none';
+                } else {
+                    sidebar.style['display'] = 'none';
+                    menubar.style['display'] = 'inline-block';
+                }
+            }
+            id.forEach(ele => {
+                ele.onclick = function(){
+                    const nextSibling = ele.nextElementSibling;
+                    const children = nextSibling.children;
+                    const sym = ele.querySelector('.expand')
+                    if (nextSibling.style.display === 'none' || nextSibling.style.display === '' && sym.innerHTML == 'chevron_right') {
+                        nextSibling.style.display = 'flex';
+                        sym.innerHTML = 'expand_more';
+                        for (const child of children) {
+                            child.style.display = 'flex'; // Change the style for each child
+                        }
+                    } else {
+                        sym.innerHTML = 'chevron_right';
+                        nextSibling.style.display = 'none';
+                        for (const child of children) {
+                            child.style.display = 'none'; // Change the style for each child
+                        }
+                    }
+                };
+            });
+            document.querySelector('.menu').onclick = function(){
+                if(sidebar.style['display'] == '' || sidebar.style['display'] == 'none'){
+                    sidebar.style['display'] = 'flex';
+                } else{
+                    sidebar.style['display'] = 'none'; 
+                }
+            }
+        }
+    </script>
+</head> 
+<body>
+<div class="container">
+    <section class="sidebar">
+        <div class="navmenu">
+            <div class="logo"><span class="material-icons">person</span>Administrator</div>
+            <div class="nav"><span class="material-icons">home</span>Dashboard</div>
+            <div class="nav list"><span class="material-icons">local_mall</span>Products<span class="material-icons expand">chevron_right</span></div>
+            <div class="submenu">
+                <div class="nav"><span class="material-icons">sell</span>Marketplace</div>
+                <div class="nav"><span class="material-icons">sell</span>Offers</div>
+            </div>
+            <div class="nav list"><span class="material-icons">payment</span>My Wallet<span class="material-icons expand">chevron_right</span></div>
+            <div class="submenu">
+                <div class="nav"><span class="material-icons">sell</span>Top Up Wallet</div>
+                <div class="nav"><span class="material-icons">sell</span>Exclusive Discounts</div>
+            </div>
+            <div class="nav list"><span class="material-icons">receipt_long</span>Transactions<span class="material-icons expand">chevron_right</span></div>
+            <div class="submenu">
+                <div class="nav"><span class="material-icons">sell</span>Import</div>
+                <div class="nav"><span class="material-icons">sell</span>Export</div>
+            </div>
+            <div class="nav"><span class="material-icons">settings</span>Settings</div>
+            <div class="ad">
+                <h4>Go Pro</h4>
+                <p>Administrator Pro is packed with premium features and many more...</p>
+                <button>Upgrade Now</button>
+            </div>
+        </div>
+    </section>
+    <section class="main">
+        <div class="topbar">
+            <div class="search-box">
+                <span class="material-icons menu">menu</span>
+                <input type="text" placeholder="&#x1F50D;Search">
+            </div>
+            <div class="widgets">
+                <span class="material-icons">notifications</span>
+                <div class="profile">
+                    <span class="name">Jenny</span>
+                    <div class="pic"></div>
+                </div>
+            </div>
+        </div>
+        <div class="title">Dashboard</div>
+        <div class="content">
+            <section class="content-container">
+                <div class="content-title">
+                    <span>Earnings Overview</span>
+                    <span class="last-item">
+                    <button>3 M</button>
+                    <button>6 M</button>
+                    <button>12 M</button>
+                    </span>
+                </div>
+                <div class="contents">
+                    <img src="graph.png">
+                </div>
+            </section>
+            <section class="content-container">
+                <div class="content-title">
+                    <span>Product Insights</span>
+                </div>
+                <div class="contents">
+                    <img src="chart.png">
+                </div>
+            </section>
+            <section class="content-container">
+                <div class="content-title">
+                <span>Products</span>
+                <span class="last-item">
+                    <div class="dropdown">
+                        Sort By
+                        <span class="material-icons">chevron_right</span>
+                    </div>
+                    <div class="dropdown-content">
+                        <span>Ratings</span>
+                        <span>Price</span>
+                    </div>
+                </span>
+                </div>
+                <div class="contents products">
+                    <div class="row categories">
+                        <span>Info</span>
+                        <span>Price</span>
+                        <span>Stock</span>
+                        <span>Active</span>
+                    </div>
+                    <div class="row">
+                        <span>pname</span>
+                        <span>100</span>
+                        <span>100</span>
+                        <span>yes</span>
+                        <span class="material-icons">menu</span>
+                    </div>
+                    <div class="row">
+                        <span>pname</span>
+                        <span>100</span>
+                        <span>100</span>
+                        <span>yes</span>
+                        <span class="material-icons">menu</span>
+                    </div>
+                    <div class="row">
+                        <span>pname</span>
+                        <span>100</span>
+                        <span>100</span>
+                        <span>yes</span>
+                        <span class="material-icons">menu</span>
+                    </div>
+                    <div class="row">
+                        <span>pname</span>
+                        <span>100</span>
+                        <span>100</span>
+                        <span>yes</span>
+                        <span class="material-icons">menu</span>
+                    </div>
+                    <div class="row">
+                        <span>pname</span>
+                        <span>100</span>
+                        <span>100</span>
+                        <span>yes</span>
+                        <span class="material-icons">menu</span>
+                    </div>
+                    <div class="row">
+                        <span>pname</span>
+                        <span>100</span>
+                        <span>100</span>
+                        <span>yes</span>
+                        <span class="material-icons">menu</span>
+                    </div>
+                </div>
+            </section>
+            <section class="content-container messenger">
+                <div class="content-title">
+                    <span>Direct Message</span>
+                    <span class="last-item material-icons">chevron_right</span>
+                </div>
+                <div class="contents">
+                    <div class="chat">
+                        <div class="pic"></div>
+                        <div class="chat-desc">
+                            <span>Name</span>
+                            <span>lorem ipsum dolor</span>
+                        </div>
+                    </div>
+                    <div class="chat">
+                        <div class="pic"></div>
+                        <div class="chat-desc">
+                            <span>Name</span>
+                            <span>lorem ipsum dolor</span>
+                        </div>
+                    </div>
+                    <div class="chat">
+                        <div class="pic"></div>
+                        <div class="chat-desc">
+                            <span>Name</span>
+                            <span>lorem ipsum dolor</span>
+                        </div>
+                    </div>
+                    <div class="chat">
+                        <div class="pic"></div>
+                        <div class="chat-desc">
+                            <span>Name</span>
+                            <span>lorem ipsum dolor</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </section>
+</div>
+</body>
+</html>
